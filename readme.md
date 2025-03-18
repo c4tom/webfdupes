@@ -2,6 +2,7 @@
 
 Este projeto é um aplicativo que permite ao usuário encontrar e gerenciar fotos duplicadas em um diretório especificado.
 
+![screenshot](screen.png)
 ## Funcionalidades
 
 - **Selecionar Pasta**: Permite ao usuário escolher um diretório para escanear em busca de fotos duplicadas.
