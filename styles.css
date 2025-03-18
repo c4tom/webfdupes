@@ -1,0 +1,493 @@
+:root {
+    --primary-color: #5D5CDE;
+    --secondary-color: #4d4cb7;
+    --bg-color: #ffffff;
+    --text-color: #1f2937;
+    --border-color: #d1d5db;
+    /* Mais escura que a anterior */
+    --hover-color: #eef2ff;
+    /* Mais vibrante ao passar o mouse */
+    --header-color: #5D5CDE;
+    --card-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    /* Sombra para cards */
+    --group-bg-color: #f9fafb;
+    /* Fundo para grupos de fotos */
+}
+
+.dark {
+    --primary-color: #5D5CDE;
+    --secondary-color: #7776e7;
+    --bg-color: #181818;
+    --text-color: #e5e7eb;
+    --border-color: #374151;
+    --hover-color: #343381;
+    --header-color: #5D5CDE;
+    --card-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    --group-bg-color: #1f2937;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.app-container {
+    border: 1px solid var(--border-color);
+}
+
+.header {
+    background-color: var(--header-color);
+}
+
+.sidebar {
+    border-right: 1px solid var(--border-color);
+}
+
+.photo-group {
+    border: 1px solid var(--border-color);
+    background-color: var(--group-bg-color);
+    /* Fundo para grupos */
+    box-shadow: var(--card-shadow);
+    /* Sombra para destaque */
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.photo-group:hover {
+    background-color: var(--hover-color);
+    transform: translateY(-1px);
+}
+
+.photo-item {
+    border: 2px solid transparent;
+    box-shadow: var(--card-shadow);
+    /* Sombra para todas as fotos */
+    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.photo-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    /* Sombra mais forte no hover */
+}
+
+.photo-item.marked {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 1px var(--primary-color), var(--card-shadow);
+    /* Borda dupla para marcados */
+}
+
+.preview-panel {
+    border-left: 1px solid var(--border-color);
+    background-color: var(--bg-color);
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.05);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.matching-slider::-webkit-slider-thumb {
+    background: var(--primary-color);
+}
+
+.matching-slider::-moz-range-thumb {
+    background: var(--primary-color);
+}
+
+.photo-file-info {
+    border-top: 1px solid var(--border-color);
+}
+
+.message-box {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    border-radius: 4px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 100;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.message-box.success {
+    background-color: #10B981;
+    color: white;
+}
+
+.message-box.error {
+    background-color: #EF4444;
+    color: white;
+}
+
+.message-box.info {
+    background-color: #3B82F6;
+    color: white;
+}
+
+.message-box.show {
+    opacity: 1;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color);
+}
+
+/* Loading animation */
+.spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-left-color: var(--primary-color);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.dark .spinner {
+    border-color: rgba(255, 255, 255, 0.1);
+    border-left-color: var(--primary-color);
+}
+
+/* Metadata table */
+.metadata-table tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.03);
+}
+
+.dark .metadata-table tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+.metadata-table td {
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Directory browser styles */
+.directory-item {
+    transition: background-color 0.2s, transform 0.2s;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+    border-radius: 6px;
+    margin-bottom: 2px;
+}
+
+.directory-item:hover {
+    background-color: #f3f4f6;
+    transform: translateX(2px);
+}
+
+.directory-items {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+/* Breadcrumb Navigation */
+.breadcrumb-item {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+    font-weight: 500;
+    color: #4b5563;
+    background-color: rgba(0, 0, 0, 0.02);
+    margin: 0 2px;
+}
+
+.breadcrumb-item:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.breadcrumb-item[data-path="/"] {
+    background-color: #f3f4f6;
+    color: #374151;
+}
+
+.breadcrumb-item[data-path="/"]:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Container de Breadcrumbs */
+#breadcrumb-container {
+    padding: 4px;
+    background-color: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+}
+
+.dark #breadcrumb-container {
+    background-color: #1f2937;
+    border-color: #374151;
+}
+
+/* Caminho atual */
+#current-path {
+    padding: 8px 12px;
+    background-color: #f3f4f6;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    font-family: monospace;
+    color: #374151;
+    font-weight: 500;
+}
+
+.dark #current-path {
+    background-color: #111827;
+    border-color: #374151;
+    color: #e5e7eb;
+}
+
+/* Container de Conteúdo do Diretório */
+#directory-content {
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+}
+
+.dark #directory-content {
+    border-color: #374151;
+}
+
+#directory-content.bg-gray-50 {
+    background-color: #ffffff !important;
+}
+
+.dark #directory-content.bg-gray-50 {
+    background-color: #111827 !important;
+}
+
+/* Ícones de Pasta e Arquivo */
+.directory-item .fa-folder {
+    color: #f59e0b !important;
+    filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.1));
+}
+
+.directory-item .fa-file-image {
+    color: #3b82f6 !important;
+    filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.1));
+}
+
+.directory-item .fa-file {
+    color: #6b7280 !important;
+}
+
+/* Nome do Item */
+.directory-item span.flex-grow {
+    color: #1f2937;
+    font-weight: 450;
+}
+
+.dark .directory-item span.flex-grow {
+    color: #e5e7eb;
+}
+
+/* Tamanho do Arquivo */
+.directory-item .text-gray-500 {
+    color: #6b7280 !important;
+    font-weight: 400;
+}
+
+/* Botões de Ação */
+#select-folder-confirm {
+    background-color: var(--primary-color);
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+#select-folder-confirm:hover {
+    background-color: var(--secondary-color);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+    transform: translateY(-1px);
+}
+
+#cancel-folder-select {
+    border: 1px solid #d1d5db;
+    font-weight: 500;
+    color: #4b5563;
+}
+
+.dark #cancel-folder-select {
+    border-color: #4b5563;
+    color: #d1d5db;
+}
+
+#cancel-folder-select:hover {
+    background-color: #f3f4f6;
+    color: #1f2937;
+}
+
+.dark #cancel-folder-select:hover {
+    background-color: #374151;
+    color: #f9fafb;
+}
+
+/* Loader para o Diretório */
+#directory-loader .spinner {
+    border-width: 3px;
+    width: 36px;
+    height: 36px;
+}
+
+/* Modal de Navegação de Pastas */
+#folder-browser-modal .bg-white {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    border: 1px solid var(--border-color);
+}
+
+/* Cabeçalho do Modal */
+#folder-browser-modal h3 {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+/* Status updates container */
+#status-updates {
+    background-color: rgba(0, 0, 0, 0.04);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-family: monospace;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.dark #status-updates {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: var(--border-color);
+}
+
+/* Progress indicator */
+.progress-bar {
+    height: 6px;
+    background-color: #e5e7eb;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.dark .progress-bar {
+    background-color: #4b5563;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: var(--primary-color);
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+/* Image comparison preview */
+.image-preview-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    background-color: #000;
+    border: 1px solid var(--border-color);
+}
+
+.image-preview-container img {
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+}
+
+/* File input (hidden) */
+.file-input {
+    display: none;
+}
+
+/* Extra styling for buttons and interactive elements */
+button,
+.button {
+    transition: all 0.2s ease;
+}
+
+button:hover,
+.button:hover {
+    transform: translateY(-1px);
+}
+
+/* Mark All button with better styling */
+.mark-all-btn {
+    font-weight: 500;
+    color: var(--primary-color) !important;
+    padding: 2px 6px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.mark-all-btn:hover {
+    background-color: var(--primary-color);
+    color: white !important;
+    text-decoration: none !important;
+}
+
+/* Better styling for the search input */
+#search-input {
+    color: var(--text-color);
+    font-size: 14px;
+}
+
+/* Toolbar styling enhancement */
+.toolbar {
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Better footer styling */
+footer {
+    border-top: 1px solid var(--border-color);
+}
+
+/* Enhanced check icon visibility */
+.check-icon {
+    border: 2px solid var(--primary-color) !important;
+    background-color: white !important;
+}
+
+.dark .check-icon {
+    background-color: #374151 !important;
+}
+
+.check-icon i {
+    color: var(--primary-color) !important;
+}
+
+/* Delete button style enhancement */
+#delete-marked-btn {
+    transition: all 0.2s ease;
+    font-weight: 500;
+}
+
+#delete-marked-btn:not(:disabled):hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}

@@ -1,0 +1,21 @@
+# Ignorar arquivos de configuração e temporários
+
+# Node modules
+node_modules/
+
+# Arquivos de log
+*.log
+
+# Arquivos de cache
+.cache/
+
+# Arquivos de ambiente
+.env
+
+# Diretórios de build
+dist/
+build/
+
+# Sistema de arquivos
+.DS_Store
+Thumbs.db
