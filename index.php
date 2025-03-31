@@ -111,6 +111,14 @@
                     <div class="bg-gray-200 dark:bg-gray-700 rounded-lg overflow-hidden h-48 image-preview-container">
                         <img id="preview-image" class="w-full h-full object-contain" src="" alt="Pré-visualização">
                     </div>
+
+                    <!-- Container do vídeo -->
+                    <div class="bg-gray-200 dark:bg-gray-700 rounded-lg overflow-hidden h-48 video-preview-container hidden">
+                        <video id="videoPlayer" class="w-full h-full object-contain" controls>
+                            <source id="videoSource" type="video/mp4">
+                            Seu navegador não suporta a tag de vídeo.
+                        </video>
+                    </div>
                 </div>
 
                 <div class="mb-4">
@@ -314,6 +322,32 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function showPreview(filePath) {
+            // Verificar se é vídeo
+            const videoExtensions = ['mp4', 'webm', 'ogg', 'mov', 'avi'];
+            const isVideo = videoExtensions.some(ext => filePath.toLowerCase().endsWith(`.${ext}`));
+            
+            if(isVideo) {
+                document.querySelector('.image-preview-container').classList.add('hidden');
+                document.querySelector('.video-preview-container').classList.remove('hidden');
+                document.getElementById('videoSource').src = filePath;
+                document.getElementById('videoPlayer').load();
+            } else {
+                document.querySelector('.video-preview-container').classList.add('hidden');
+                // Restante do código para mostrar a pré-visualização de imagem
+            }
+        }
+
+        // Fechar preview ao clicar fora do vídeo
+        document.querySelector('.video-preview-container').addEventListener('click', function(e) {
+            if(e.target === this) {
+                this.classList.add('hidden');
+                document.getElementById('videoPlayer').pause();
+            }
+        });
+    </script>
 
     <script src="script.js"></script>
 </body>
