@@ -649,7 +649,7 @@ function updateStats() {
 
     photoGroups.forEach(group => {
         group.photos.forEach(photo => {
-            if (markedPhotos.has(photo.id)) {
+            if (markedPhotos.has(photo.id) && photo.size) {
                 spaceSaved += photo.size;
                 markedItems.push(photo);
             }
@@ -700,10 +700,12 @@ function deleteMarkedPhotos() {
     photoGroups.forEach(group => {
         group.photos.forEach(photo => {
             if (markedPhotos.has(photo.id)) {
+                console.log("photo=", photo);
                 photosToDelete.push(photo);
             }
         });
     });
+    console.log("photosToDelete=", photosToDelete);
 
     // Close modal
     closeConfirmModal();
@@ -1088,3 +1090,45 @@ updatePhotoGroupsDisplay();
 // Remover lógica relacionada à Sensibilidade de Correspondência
 // Definir tema padrão como claro
 document.documentElement.classList.remove('dark');
+
+function selectAllVisiblePhotos() {
+    const visiblePhotos = document.querySelectorAll('.photo-item:not(.hidden)');
+    let markedCount = 0;
+
+    visiblePhotos.forEach(photoElement => {
+        const photoId = parseInt(photoElement.getAttribute('data-id')); // Convertendo para int
+        if (photoId) {
+            markedPhotos.add(photoId);
+            photoElement.classList.add('marked');
+            const checkIcon = photoElement.querySelector('.check-icon');
+            if (checkIcon) checkIcon.classList.remove('hidden');
+
+            // Atualizar a foto selecionada
+            if (selectedPhotoElement) {
+                selectedPhotoElement.classList.remove('ring-2', 'ring-blue-500');
+            }
+            photoElement.classList.add('ring-2', 'ring-blue-500');
+            selectedPhotoElement = photoElement;
+
+            // Atualizar o painel de visualização
+            const groupId = photoElement.getAttribute('data-group-id');
+            const group = photoGroups.find(g => g.id === groupId);
+            if (group) {
+                const photo = group.photos.find(p => p.id === photoId);
+                if (photo) {
+                    updatePreview(photo);
+                }
+            }
+
+            markedCount++;
+        }
+    });
+
+    // Update stats
+    updateStats();
+
+    // Show message
+    showMessage(`${markedCount} fotos selecionadas`, 'success');
+}
+
+document.getElementById('select-all-btn').addEventListener('click', selectAllVisiblePhotos);

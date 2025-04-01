@@ -39,6 +39,9 @@
                 <button id="unmark-all-btn" class="bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 px-3 py-1 rounded transition flex items-center">
                     <i class="fas fa-minus-circle mr-1"></i> Desmarcar Tudo
                 </button>
+                <button id="select-all-btn" class="bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 px-3 py-1 rounded transition flex items-center">
+                    <i class="fas fa-check-circle mr-1"></i> Selecionar Todas
+                </button>
                 <div class="px-3 py-1 bg-gray-200 dark:bg-gray-700 rounded flex items-center">
                     <i class="fas fa-search mr-1"></i>
                     <input id="search-input" type="text" placeholder="Pesquisar..." class="bg-transparent outline-none w-32">
